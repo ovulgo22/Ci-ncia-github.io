@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="theme-dark">
-<head>
+<html lang="pt-br" class="theme-dark"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Compêndio da Ciência: Uma Análise Estruturada</title>
@@ -12,20 +11,35 @@
     <meta property="og:description" content="Uma jornada estruturada através do conhecimento empírico e teórico.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://seusite.github.io/compendio-ciencia/">
-    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="O Compêndio da Ciência">
     <meta name="twitter:description" content="Uma exploração científica sobre os pilares do conhecimento.">
+    
     <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🔬</text></svg>'>
-    <link rel="stylesheet" href="styles.css"> <script type="application/ld+json">
+
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('theme');
+          if (theme) {
+            document.documentElement.className = theme === 'dark' ? 'theme-dark' : 'theme-light';
+          } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            document.documentElement.className = 'theme-light';
+          }
+        } catch (e) { /* Ignora erros de localStorage */ }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "TechArticle",
       "headline": "O Compêndio da Ciência: O Método Científico",
-      "author": {
-        "@type": "Person",
-        "name": "Arquiteto de Software"
-      },
-      "datePublished": "2025-08-30",
+      "author": { "@type": "Person", "name": "Arquiteto de Software" },
+      "datePublished": "2025-08-31",
       "description": "Uma análise detalhada do processo iterativo e sistemático que forma a base de todo o conhecimento empírico.",
       "articleBody": "O método científico é o pilar sobre o qual todo o conhecimento empírico é construído..."
     }
@@ -36,18 +50,27 @@
     <header class="site-header" role="banner">
         <div class="header-container">
             <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
-            <div class="logo">
-                <svg class="logo-svg" width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Logo do Compêndio da Ciência">
+            <a href="#" class="logo" aria-label="Página inicial do Compêndio da Ciência">
+                <svg class="logo-svg" width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <circle cx="50" cy="50" r="10" fill="currentColor"/>
                     <ellipse cx="50" cy="50" rx="45" ry="18" stroke="currentColor" stroke-width="5" fill="none" transform="rotate(45 50 50)"/>
                     <ellipse cx="50" cy="50" rx="45" ry="18" stroke="currentColor" stroke-width="5" fill="none" transform="rotate(-45 50 50)"/>
                     <ellipse cx="50" cy="50" rx="45" ry="18" stroke="currentColor" stroke-width="5" fill="none" transform="rotate(0 50 50)"/>
                 </svg>
                 <span class="logo-text">Compêndio da Ciência</span>
+            </a>
+            
+            <div class="header-actions">
+                <div class="search-bar" role="search">
+                    <input type="search" placeholder="Pesquisar..." aria-label="Campo de busca">
+                </div>
+                
+                <button class="theme-toggle" id="theme-toggle" aria-label="Ativar tema claro">
+                    <svg class="icon-moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg class="icon-sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
             </div>
-            <div class="search-bar" role="search">
-                <input type="search" placeholder="Pesquisar na documentação..." aria-label="Campo de busca">
-            </div>
+
             <button class="mobile-nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Abrir menu de navegação">
                 <svg class="icon-menu" viewBox="0 0 100 80" width="24" height="24" aria-hidden="true"><rect width="100" height="15"></rect><rect y="30" width="100" height="15"></rect><rect y="60" width="100" height="15"></rect></svg>
             </button>
@@ -58,8 +81,7 @@
         
         <nav class="site-nav" id="site-nav" role="navigation" aria-labelledby="primary-navigation-title">
             <h2 id="primary-navigation-title" class="sr-only">Navegação Primária</h2>
-            <ul class="nav-list">
-                </ul>
+            <ul class="nav-list"></ul>
         </nav>
 
         <main class="main-content" id="main-content" tabindex="-1" role="main">
@@ -74,21 +96,12 @@
                     <p>O método científico é o pilar sobre o qual todo o conhecimento empírico é construído. É um processo iterativo e sistemático de aquisição de conhecimento que envolve observação, formulação de hipóteses, experimentação e validação.</p>
                     
                     <figure class="diagram-container" role="figure" aria-labelledby="diagram-caption">
-                        <svg class="scientific-diagram" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="10" y="80" width="60" height="40" />
-                            <text x="40" y="105" text-anchor="middle">Observar</text>
-                            <line x1="70" y1="100" x2="90" y2="100" stroke="currentColor" stroke-width="2"/>
-                            <text x="80" y="95" font-size="12px">→</text>
-                            </svg>
+                        <svg class="scientific-diagram" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"></svg>
                         <figcaption id="diagram-caption">Fig. 1: Representação cíclica do método científico.</figcaption>
                     </figure>
 
-                    <ol class="steps-list">
-                        </ol>
-
-                    <blockquote>"Nenhum número de experimentos pode provar que estou certo; um único experimento pode provar que estou errado."
-                        <footer>— Albert Einstein. <a href="fonte-link-aqui" target="_blank" rel="noopener noreferrer">Verificar fonte</a></footer>
-                    </blockquote>
+                    <ol class="steps-list"></ol>
+                    <blockquote></blockquote>
                 </section>
                 
                 </article>
@@ -97,20 +110,19 @@
         <aside class="page-toc" role="complementary">
             <nav aria-labelledby="toc-title">
                 <h3 id="toc-title">Nesta Página</h3>
-                <ul id="toc-list">
-                    </ul>
+                <ul id="toc-list"></ul>
             </nav>
         </aside>
 
     </div>
 
     <footer class="site-footer" role="contentinfo">
-        <p>Projeto "O Compêndio da Ciência" &copy; 2025. Todo o conteúdo é para fins educacionais. Construído com uma arquitetura de 7 arquivos.</p>
+        <p>Projeto "O Compêndio da Ciência" &copy; 2025. Construído com uma arquitetura de 7 arquivos.</p>
     </footer>
 
     <template id="toc-item-template">
         <li><a href="" class="toc-link"></a></li>
     </template>
 
-    <script src="main.js" defer></script> </body>
+    <script src="main.js" defer></script> <script src="theme.js" defer></script> </body>
 </html>
