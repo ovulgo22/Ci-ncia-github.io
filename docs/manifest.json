@@ -1,0 +1,64 @@
+{
+  "appName": "Compêndio da Ciência",
+  "version": "6.0",
+  "codename": "Symbiont",
+  "defaultRoute": "home",
+  "engine": {
+    "core": "/engine/core.js",
+    "renderer": "/engine/renderer.js"
+  },
+  "modules": {
+    "theme": "/modules/theme.js",
+    "search": "/modules/search.js",
+    "accessibility": "/modules/accessibility.js",
+    "diagrams": "/modules/diagrams.js"
+  },
+  "templates": {
+    "Shell": "/templates/shell.html",
+    "Hero": "/templates/hero.html",
+    "CardGrid": "/templates/cardgrid.html",
+    "Card": "/templates/card.html",
+    "ArticleHeader": "/templates/article-header.html",
+    "TextBlock": "/templates/text-block.html",
+    "Callout": "/templates/callout.html",
+    "FormulaBlock": "/templates/formula-block.html",
+    "TableBlock": "/templates/table-block.html",
+    "Timeline": "/templates/timeline.html",
+    "TimelineEvent": "/templates/timeline-event.html",
+    "Diagram": "/templates/diagram.html"
+  },
+  "routes": {
+    "home": {
+      "title": "Início",
+      "content": "/content/home.json",
+      "styles": [
+        "/styles/components/hero.css",
+        "/styles/components/card.css"
+      ],
+      "modules": []
+    },
+    "relativity": {
+      "title": "Relatividade Geral",
+      "content": "/content/relativity.json",
+      "styles": [
+        "/styles/components/article.css",
+        "/styles/components/callout.css",
+        "/styles/components/formula.css",
+        "/styles/components/diagram.css"
+      ],
+      "modules": [
+        "diagrams"
+      ]
+    },
+    "quantum-mechanics": {
+      "title": "Mecânica Quântica",
+      "content": "/content/quantum-mechanics.json",
+      "styles": [
+        "/styles/components/article.css",
+        "/styles/components/callout.css",
+        "/styles/components/timeline.css"
+      ],
+      "modules": []
+    }
+  }
+}
