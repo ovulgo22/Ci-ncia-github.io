@@ -3,24 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatividade Geral: A Geometria do Cosmos | Compêndio da Ciência</title>
-    <meta name="description" content="Uma análise profunda da Teoria da Relatividade Geral de Einstein, explorando como a massa curva o tecido do espaço-tempo.">
-    <meta name="keywords" content="Relatividade Geral, Einstein, Espaço-Tempo, Gravidade, Buracos Negros">
-    <meta name="author" content="Arquiteto de Software">
-    <meta name="theme-color" content="#0d1117"> <link rel="canonical" href="https://seusite.github.io/compendio-ciencia/">
-
-    <meta property="og:site_name" content="Compêndio da Ciência">
-    <meta property="og:title" content="Relatividade Geral: A Geometria do Cosmos">
-    <meta property="og:description" content="Uma análise profunda da Teoria da Relatividade Geral de Einstein.">
-    <meta property="og:type" content="article">
-    <meta property="article:published_time" content="2025-08-31T08:00:00Z">
-    <meta property="og:url" content="https://seusite.github.io/compendio-ciencia/">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Relatividade Geral: A Geometria do Cosmos">
-    <meta name="twitter:description" content="Uma análise profunda da Teoria da Relatividade Geral de Einstein.">
+    <title>Compêndio da Ciência | Edição Quantum</title>
+    <meta name="description" content="Uma interface de exploração científica de última geração. Navegue pelas maravilhas do cosmos, da relatividade à mecânica quântica, em uma experiência imersiva.">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0514">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f0f2f5">
     
-    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🔬</text></svg>'>
+    <link rel="canonical" href="https://seusite.github.io/compendio-ciencia/">
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🌌</text></svg>'>
 
     <script>
       (function() {
@@ -33,177 +22,118 @@
         } catch (e) {}
       })();
     </script>
-
+    
     <link rel="stylesheet" href="styles.css" fetchpriority="high">
-
-    <script type="application/ld+json">
+    <script src="quantum.js" defer></script> <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "TechArticle",
-          "headline": "Relatividade Geral: A Geometria do Cosmos",
-          "datePublished": "2025-08-31T08:00:00Z",
-          "author": { "@type": "Person", "name": "Arquiteto de Software" },
-          "articleBody": "A Teoria da Relatividade Geral, proposta por Albert Einstein em 1915, revolucionou nossa compreensão da gravidade..."
+      "@type": "WebSite",
+      "name": "Compêndio da Ciência | Edição Quantum",
+      "url": "https://seusite.github.io/compendio-ciencia/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://seusite.github.io/compendio-ciencia/#search?q={search_term_string}"
         },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Física", "item": "#fisica" },
-            { "@type": "ListItem", "position": 2, "name": "Relatividade Geral" }
-          ]
-        }
-      ]
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
 </head>
 <body>
 
-    <header class="site-header" role="banner">
-        <div class="header-container">
-            <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
-            <a href="#" class="logo" id="logo-container" aria-label="Página inicial do Compêndio da Ciência">
-                </a>
-            
-            <div class="header-actions">
-                <form class="search-bar" role="search" onsubmit="return false;">
-                    <input type="search" placeholder="Pesquisar..." aria-label="Campo de busca">
-                </form>
-                
-                <button class="theme-toggle" id="theme-toggle" aria-label="Ativar tema claro">
-                    </button>
-            </div>
-
-            <button class="mobile-nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Abrir menu de navegação">
-                 </button>
-        </div>
-    </header>
-
-    <div class="main-container">
-        <nav class="site-nav" id="site-nav" role="navigation" aria-labelledby="primary-navigation-title">
-            <h2 id="primary-navigation-title" class="sr-only">Navegação Primária</h2>
-            <ul class="nav-list">
-                <li class="nav-category">
-                    <h3 class="nav-category-title">Fundamentos</h3>
-                    <ul>
-                        <li><a href="#metodo-cientifico" class="nav-link">O Método Científico</a></li>
-                    </ul>
-                </li>
-                <li class="nav-category">
-                    <h3 id="fisica" class="nav-category-title">Pilares da Física</h3>
-                    <ul>
-                        <li><a href="#mecanica-classica" class="nav-link">Mecânica Clássica</a></li>
-                        <li>
-                            <details open>
-                                <summary>Relatividade</summary>
-                                <ul>
-                                    <li><a href="#relatividade-geral" class="nav-link active">Relatividade Geral</a></li>
-                                    <li><a href="#relatividade-especial" class="nav-link">Relatividade Especial</a></li>
-                                </ul>
-                            </details>
-                        </li>
-                        <li><a href="#mecanica-quantica" class="nav-link">Mecânica Quântica</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-
-        <main class="main-content" id="main-content" tabindex="-1" role="main">
-            <article>
-                <header class="page-header">
-                    <p class="breadcrumb">Física / Relatividade</p>
-                    <h1>Relatividade Geral: A Geometria do Cosmos</h1>
-                    <p class="subtitle">Como a gravidade não é uma força, mas uma consequência da curvatura do espaço-tempo.</p>
-                </header>
-
-                <section id="introducao" aria-labelledby="introducao-title">
-                    <h2 id="introducao-title">Introdução: A Revolução de Einstein</h2>
-                    <p>A Teoria da Relatividade Geral, proposta por Albert Einstein em 1915, revolucionou nossa compreensão da gravidade. Diferente da visão de Newton de uma força misteriosa agindo à distância, Einstein postulou que a gravidade é uma manifestação da geometria do próprio universo.</p>
-
-                    <div class="callout note">
-                        <p><strong>Nota:</strong> A Relatividade Geral é uma generalização da Relatividade Especial (1905), que se aplica a referenciais inerciais. A Geral inclui referenciais acelerados e, consequentemente, a gravidade.</p>
-                    </div>
-                </section>
-
-                <section id="principio-equivalencia" aria-labelledby="principio-equivalencia-title">
-                    <h2 id="principio-equivalencia-title">O Princípio da Equivalência</h2>
-                    <p>O ponto de partida de Einstein foi o "experimento mental mais feliz de sua vida": a equivalência entre um campo gravitacional e a aceleração. Um observador em uma caixa fechada não consegue distinguir se está em repouso na superfície da Terra ou acelerando a $9.8 m/s^2$ no espaço.</p>
-                    
-                    <h4>Equações de Campo de Einstein</h4>
-                    <p>A matemática da teoria é encapsulada nas Equações de Campo de Einstein, que relacionam a curvatura do espaço-tempo com a distribuição de matéria e energia.</p>
-                    <pre><code>Gμν + Λgμν = (8πG/c⁴)Tμν</code></pre>
-                </section>
-                
-                <section id="consequencias" aria-labelledby="consequencias-title">
-                    <h2 id="consequencias-title">Consequências e Evidências</h2>
-                    <p>A teoria prevê fenômenos extraordinários, muitos dos quais já foram confirmados experimentalmente:</p>
-                    
-                    <div class="callout warning">
-                        <p><strong>Atenção:</strong> Os efeitos da Relatividade Geral são mais perceptíveis em campos gravitacionais muito fortes, como ao redor de estrelas de nêutrons ou buracos negros.</p>
-                    </div>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Fenômeno Previsto</th>
-                                <th>Evidência Observacional</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Lentes Gravitacionais</td>
-                                <td>Observação do desvio da luz de estrelas distantes pelo Sol (Eddington, 1919).</td>
-                            </tr>
-                            <tr>
-                                <td>Ondas Gravitacionais</td>
-                                <td>Detecção direta pelo LIGO em 2015, originadas da fusão de dois buracos negros.</td>
-                            </tr>
-                            <tr>
-                                <td>Dilatação do Tempo Gravitacional</td>
-                                <td>Necessidade de correção nos relógios de satélites GPS para manterem a precisão.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-            </article>
-
-            <div id="search-no-results" class="no-results-message" role="status" aria-live="polite" hidden>
-                Nenhum resultado encontrado para a sua busca.
-            </div>
-        </main>
-
-        <aside class="page-toc" role="complementary">
-            <nav aria-labelledby="toc-title">
-                <h3 id="toc-title">Nesta Página</h3>
-                <ul id="toc-list"></ul>
-            </nav>
-        </aside>
-
+    <div id="app-root">
+      <div class="initial-loader" aria-label="Inicializando motor quântico...">
+        <div class="loader-spinner"></div>
+        <p>Inicializando Motor Quantum...</p>
+      </div>
     </div>
 
-    <footer class="site-footer" role="contentinfo">
-        <p>Projeto "O Compêndio da Ciência" v4.0 (Nébula) &copy; 2025.</p>
-    </footer>
-
+    <script id="app-content-data" type="application/json">
+      {
+        "pages": {
+          "home": {
+            "title": "Início",
+            "components": [
+              {
+                "type": "Hero",
+                "title": "O Universo é Declarativo.",
+                "subtitle": "Explore os pilares da ciência moderna através de uma interface projetada para a descoberta. Bem-vindo à Edição Quantum."
+              },
+              {
+                "type": "CardGrid",
+                "cards": [
+                  { "title": "Relatividade Geral", "summary": "A geometria do espaço-tempo e a natureza da gravidade.", "link": "#relativity" },
+                  { "title": "Mecânica Quântica", "summary": "O estranho e fascinante mundo das partículas subatômicas.", "link": "#quantum-mechanics" },
+                  { "title": "O Método Científico", "summary": "A fundação do conhecimento empírico e da investigação.", "link": "#scientific-method" }
+                ]
+              }
+            ]
+          },
+          "relativity": {
+            "title": "Relatividade Geral",
+            "breadcrumb": "Física / Relatividade",
+            "components": [
+              { "type": "ArticleHeader", "title": "Relatividade Geral: A Geometria do Cosmos", "subtitle": "Como a gravidade não é uma força, mas uma consequência da curvatura do espaço-tempo." },
+              { "type": "TextBlock", "content": "A Teoria da Relatividade Geral, proposta por Albert Einstein em 1915, revolucionou nossa compreensão da gravidade. Diferente da visão de Newton de uma força misteriosa agindo à distância, Einstein postulou que a gravidade é uma manifestação da geometria do próprio universo." },
+              { "type": "Callout", "variant": "note", "content": "A Relatividade Geral é uma generalização da Relatividade Especial (1905), que se aplica a referenciais inerciais. A Geral inclui referenciais acelerados e, consequentemente, a gravidade." },
+              { "type": "TextBlock", "heading": "O Princípio da Equivalência", "content": "O ponto de partida de Einstein foi o 'experimento mental mais feliz de sua vida': a equivalência entre um campo gravitacional e a aceleração. Um observador em uma caixa fechada não consegue distinguir se está em repouso na superfície da Terra ou acelerando a 9.8 m/s² no espaço." },
+              { "type": "FormulaBlock", "formula": "Gμν + Λgμν = (8πG/c⁴)Tμν" },
+              { "type": "TableBlock", "headers": ["Fenômeno Previsto", "Evidência Observacional"], "rows": [
+                  ["Lentes Gravitacionais", "Observação do desvio da luz de estrelas distantes pelo Sol (Eddington, 1919)."],
+                  ["Ondas Gravitacionais", "Detecção direta pelo LIGO em 2015, originadas da fusão de dois buracos negros."],
+                  ["Dilatação do Tempo Gravitacional", "Correção nos relógios de satélites GPS para manterem a precisão."]
+              ]}
+            ]
+          },
+          "quantum-mechanics": {
+            "title": "Mecânica Quântica",
+            "breadcrumb": "Física / Quântica",
+            "components": [
+              { "type": "ArticleHeader", "title": "Mecânica Quântica: A Realidade Indeterminada", "subtitle": "Uma introdução aos princípios contraintuitivos que governam o mundo subatômico." },
+              { "type": "TextBlock", "content": "A mecânica quântica descreve a natureza em suas menores escalas de energia e matéria. Suas previsões, embora bizarras para o nosso senso comum, são as mais precisamente testadas em toda a história da física." },
+              { "type": "Callout", "variant": "warning", "content": "Princípio da Incerteza de Heisenberg: É impossível saber simultaneamente com precisão absoluta a posição e o momento de uma partícula." },
+              { "type": "Timeline", "events": [
+                  { "year": "1900", "title": "Quantum de Planck", "description": "Max Planck propõe que a energia é emitida em pacotes discretos (quanta)." },
+                  { "year": "1905", "title": "Efeito Fotoelétrico", "description": "Einstein explica o efeito postulando que a luz em si é quantizada (fótons)." },
+                  { "year": "1913", "title": "Modelo Atômico de Bohr", "description": "Niels Bohr aplica a teoria quântica ao átomo, com elétrons em órbitas discretas." },
+                  { "year": "1926", "title": "Equação de Schrödinger", "description": "Erwin Schrödinger desenvolve a equação de onda fundamental da mecânica quântica." },
+                  { "year": "1927", "title": "Princípio da Incerteza", "description": "Werner Heisenberg estabelece um limite fundamental para a precisão das medições quânticas." }
+              ]}
+            ]
+          }
+        }
+      }
+    </script>
+    
     <div id="app-templates" hidden>
-        <template id="toc-item-template">
-            <li><a href="" class="toc-link"></a></li>
-        </template>
-        <template id="icon-logo">
-            <svg class="logo-svg" width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="50" cy="50" r="10" fill="currentColor"/><ellipse cx="50" cy="50" rx="45" ry="18" stroke="currentColor" stroke-width="5" fill="none" transform="rotate(45 50 50)"/><ellipse cx="50" cy="50" rx="45" ry="18" stroke="currentColor" stroke-width="5" fill="none" transform="rotate(-45 50 50)"/><ellipse cx="50" cy="50" rx="45" ry="18" stroke="currentColor" stroke-width="5" fill="none" transform="rotate(0 50 50)"/></svg>
-            <span class="logo-text">Compêndio da Ciência</span>
-        </template>
-        <template id="icon-moon"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></template>
-        <template id="icon-sun"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></template>
-        <template id="icon-menu"><svg viewBox="0 0 100 80" width="24" height="24" aria-hidden="true"><rect width="100" height="15"></rect><rect y="30" width="100" height="15"></rect><rect y="60" width="100" height="15"></rect></svg></template>
-    </div>
+      <template id="template-shell">
+        <div class="aurora-background"></div>
+        <header class="site-header" role="banner"></header>
+        <div class="main-container">
+          <nav class="site-nav" role="navigation"></nav>
+          <main class="main-content" role="main"></main>
+        </div>
+        <footer class="site-footer" role="contentinfo"></footer>
+      </template>
 
-    <script src="main.js" defer></script>
+      <template id="template-Hero"><section class="hero"><h1 data-bind="title"></h1><p data-bind="subtitle"></p></section></template>
+      <template id="template-CardGrid"><section class="card-grid" data-bind="cards"></section></template>
+      <template id="template-Card"><a class="card"><h3 data-bind="title"></h3><p data-bind="summary"></p></a></template>
+      <template id="template-ArticleHeader"><header class="page-header"><p class="breadcrumb" data-bind="breadcrumb"></p><h1 data-bind="title"></h1><p class="subtitle" data-bind="subtitle"></p></header></template>
+      <template id="template-TextBlock"><section><h2 data-bind="heading" optional></h2><p data-bind="content"></p></section></template>
+      <template id="template-Callout"><div class="callout"><p data-bind="content"></p></div></template>
+      <template id="template-FormulaBlock"><pre><code><span data-bind="formula"></span></code></pre></template>
+      <template id="template-TableBlock"><div class="table-wrapper"><table><thead data-bind="headers"></thead><tbody data-bind="rows"></tbody></table></div></template>
+      <template id="template-Timeline"><section class="timeline" data-bind="events"></section></template>
+      <template id="template-TimelineEvent"><div class="timeline-event"><div class="timeline-year" data-bind="year"></div><div class="timeline-content"><h4 data-bind="title"></h4><p data-bind="description"></p></div></div></template>
+      
+      </div>
+    
     <script src="theme.js" defer></script>
     <script src="search.js" defer></script>
     <script src="accessibility.js" defer></script>
     <script src="diagrams.js" defer></script>
-
-</body>
+    </body>
 </html>
