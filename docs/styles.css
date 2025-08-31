@@ -233,3 +233,55 @@ mark { background-color: var(--color-primary); color: var(--color-background); p
   display: flex;
   flex-direction: column;
 }
+
+/* Em styles.css */
+/* -------------------------------------------------------------------------- */
+/* 6. ESTILOS DO DIAGRAMA SVG DINÂMICO (v4.0 - Nébula)                        */
+/* -------------------------------------------------------------------------- */
+.scientific-diagram {
+  color: var(--color-text-secondary);
+  overflow: visible;
+  max-width: 400px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+}
+
+.spacetime-grid-line {
+  stroke: var(--color-border);
+  stroke-width: 1px;
+  transition: d 0.8s cubic-bezier(0.65, 0, 0.35, 1); /* Anima a forma do caminho */
+}
+
+.central-mass {
+  fill: var(--color-primary);
+  filter: drop-shadow(0 0 10px var(--color-primary));
+  transform-origin: center;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s ease;
+  transform: scale(0);
+  opacity: 0;
+}
+
+.orbital-path {
+  fill: none;
+  stroke: var(--color-text-secondary);
+  stroke-width: 1px;
+  stroke-dasharray: 4, 4;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.orbiting-body {
+  fill: var(--color-text-primary);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Estados de animação */
+.diagram-animated .central-mass {
+  transform: scale(1);
+  opacity: 1;
+}
+.diagram-animated .orbital-path,
+.diagram-animated .orbiting-body {
+  opacity: 1;
+}
