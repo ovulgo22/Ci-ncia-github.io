@@ -1,5 +1,5 @@
-/* ARQUIVO 4 de 7: theme.js */
-/* Responsável pela lógica de alternância de tema (claro/escuro) e persistência de dados. */
+/* ARQUIVO 4 de 7: theme.js (Versão 4.0 - Nébula) */
+/* Gerencia a troca de tema, persistência e, agora, a atualização da UI do navegador (theme-color). */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -7,30 +7,44 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const themeToggle = document.getElementById('theme-toggle');
   const docElement = document.documentElement;
+  // NOVIDADE v4.0: Seletor para a meta tag de cor do tema
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
-  // Se o botão não existir, o script não precisa rodar.
-  if (!themeToggle) {
-    return;
-  }
+  if (!themeToggle) return;
 
   /**
-   * Aplica o tema e atualiza a interface e o localStorage.
-   * @param {string} theme - O tema a ser aplicado ('light' or 'dark').
+   * NOVIDADE v4.0: Atualiza a meta tag 'theme-color' dinamicamente.
+   * Lê a cor de fundo atual diretamente das variáveis CSS para uma sincronia perfeita.
+   */
+  const updateThemeColor = () => {
+    if (!themeColorMeta) return;
+    
+    // getComputedStyle lê o valor final da variável CSS aplicada ao elemento.
+    const newColor = getComputedStyle(docElement).getPropertyValue('--color-background').trim();
+    themeColorMeta.setAttribute('content', newColor);
+  };
+  
+  /**
+   * Aplica o tema visual, salva a preferência e atualiza a UI do navegador.
+   * @param {string} theme - O tema a ser aplicado ('light' ou 'dark').
    */
   const applyTheme = (theme) => {
-    // Aplica a classe ao elemento <html>
+    // Define a classe no <html> para que o CSS aplique as variáveis de cor corretas.
     docElement.className = theme === 'dark' ? 'theme-dark' : 'theme-light';
     
-    // Salva a preferência do usuário
+    // Salva a preferência do usuário no localStorage para persistência.
     try {
       localStorage.setItem('theme', theme);
     } catch (e) {
-      console.warn('LocalStorage is not available.');
+      console.warn('LocalStorage não está disponível.');
     }
 
-    // Atualiza o aria-label do botão para acessibilidade
+    // Atualiza o aria-label do botão para acessibilidade, informando a próxima ação.
     const newLabel = theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro';
     themeToggle.setAttribute('aria-label', newLabel);
+    
+    // Chama a nova função para atualizar a cor da UI do navegador.
+    updateThemeColor();
   };
 
   /**
@@ -41,16 +55,21 @@ document.addEventListener('DOMContentLoaded', () => {
     return docElement.classList.contains('theme-light') ? 'light' : 'dark';
   };
 
-  // Adiciona o listener de clique ao botão
+  // --- PONTO DE ENTRADA ---
+
+  // 1. Adiciona o listener de clique para permitir a troca de tema pelo usuário.
   themeToggle.addEventListener('click', () => {
     const currentTheme = getCurrentTheme();
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     applyTheme(newTheme);
   });
   
-  // Garante que o aria-label do botão esteja correto no carregamento inicial
+  // 2. Garante que o estado inicial do botão (aria-label) e a cor do tema (meta tag)
+  //    estejam corretos assim que o DOM for carregado. O tema visual em si já foi
+  //    definido pelo script anti-flicker no <head>.
   const initialTheme = getCurrentTheme();
   const initialLabel = initialTheme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro';
   themeToggle.setAttribute('aria-label', initialLabel);
+  updateThemeColor();
 
 });
