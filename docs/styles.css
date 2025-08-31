@@ -1,83 +1,61 @@
-/* ARQUIVO 2 de 7: styles.css (Versão 4.0 - Nébula) */
-/* Responsável por toda a apresentação visual, theming e responsividade. */
+/* ARQUIVO 2 de 7: styles.css (Versão 5.0 - Quantum) */
+/* Uma folha de estilos totalmente nova para a arquitetura SPA e a estética "Glassmorphism". */
 
 /* -------------------------------------------------------------------------- */
-/* 1. ARQUITETURA DE VARIÁVEIS (A Base Matemática e Temática)                 */
+/* 1. ARQUITETURA DE VARIÁVEIS GLOBAIS (QUANTUM)                              */
 /* -------------------------------------------------------------------------- */
 :root {
   /* Paleta de Cores (Tema Escuro por Padrão) */
-  --color-background: #0d1117;
-  --color-surface: #161b22;
-  --color-border: #30363d;
-  --color-text-primary: #c9d1d9;
-  --color-text-secondary: #8b949e;
-  --color-primary: #58a6ff;
-  --color-primary-hover: #79c0ff;
-  --color-highlight: #1f6feb;
+  --color-background: #0a0514;
+  --color-text-primary: #e6e0ff;
+  --color-text-secondary: #a095c0;
+  --color-accent: #00f5d4;
+  --color-accent-glow: rgba(0, 245, 212, 0.3);
+  --glass-bg: rgba(18, 12, 36, 0.6);
+  --glass-border: rgba(160, 149, 192, 0.2);
+  --glass-blur: 12px;
 
-  /* NOVIDADE v4.0: Cores para componentes de conteúdo */
-  --color-code-bg: #22272e;
-  --color-note-bg: rgba(56, 139, 253, 0.1);
-  --color-note-border: #388bfd;
-  --color-warning-bg: rgba(248, 181, 99, 0.1);
-  --color-warning-border: #f8b563;
+  /* NOVO: Cores do Fundo Aurora */
+  --aurora-color-1: #9b5de5;
+  --aurora-color-2: #f15bb5;
+  --aurora-color-3: #00bbf9;
+  --aurora-color-4: #00f5d4;
 
-  /* NOVIDADE v4.0: Variáveis do Tema Claro */
-  --light-background: #ffffff;
-  --light-surface: #f6f8fa;
-  --light-border: #d0d7de;
-  --light-text-primary: #1f2328;
-  --light-text-secondary: #57606a;
-  --light-code-bg: #f0f2f5;
-  --light-note-bg: #ddf4ff;
-  --light-note-border: #58a6ff;
-  --light-warning-bg: #fff8c5;
-  --light-warning-border: #d4a72c;
-  
-  /* Tipografia */
-  --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-family-mono: "SF Mono", "Consolas", "Liberation Mono", Menlo, monospace;
-  
-  /* ... (demais variáveis permanecem as mesmas) ... */
+  /* Variáveis do Tema Claro */
+  --light-background: #f0f2f5;
+  --light-text-primary: #1c1e21;
+  --light-text-secondary: #5a6169;
+  --light-accent: #006ef5;
+  --light-accent-glow: rgba(0, 110, 245, 0.15);
+  --light-glass-bg: rgba(255, 255, 255, 0.6);
+  --light-glass-border: rgba(28, 30, 33, 0.1);
+
+  /* Tipografia Fluida e Moderna */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-size-base: 16px;
-  --font-size-sm: 0.875rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
-  --font-size-xxl: 2rem;
-  --line-height-base: 1.6;
-  --line-height-heading: 1.2;
-  --space-unit: 1rem;
-  --space-xs: calc(var(--space-unit) * 0.25);
-  --space-s: calc(var(--space-unit) * 0.5);
-  --space-m: var(--space-unit);
-  --space-l: calc(var(--space-unit) * 1.5);
-  --space-xl: calc(var(--space-unit) * 2);
-  --space-xxl: calc(var(--space-unit) * 3);
-  --header-height: 60px;
-  --sidebar-width: 260px;
-  --toc-width: 240px;
-  --border-radius: 6px;
+  --font-size-fluid-h1: clamp(2.5rem, 6vw, 4.5rem);
+  --font-size-fluid-h2: clamp(1.8rem, 4vw, 2.8rem);
+  
+  /* Geometria e Animações */
+  --border-radius: 12px;
+  --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-medium: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --space-unit: 1rem; /* ... espaçamentos proporcionais ... */
 }
 
 /* Regra que ativa as variáveis do tema claro */
 html.theme-light {
   --color-background: var(--light-background);
-  --color-surface: var(--light-surface);
-  --color-border: var(--light-border);
   --color-text-primary: var(--light-text-primary);
   --color-text-secondary: var(--light-text-secondary);
-  --color-primary: #0969da;
-  --color-primary-hover: #0c84fa;
-  --color-code-bg: var(--light-code-bg);
-  --color-note-bg: var(--light-note-bg);
-  --color-note-border: var(--light-note-border);
-  --color-warning-bg: var(--light-warning-bg);
-  --color-warning-border: var(--light-warning-border);
+  --color-accent: var(--light-accent);
+  --color-accent-glow: var(--light-accent-glow);
+  --glass-bg: var(--light-glass-bg);
+  --glass-border: var(--light-glass-border);
 }
 
 /* -------------------------------------------------------------------------- */
-/* 2. RESET BÁSICO E ESTILOS GLOBAIS                                          */
+/* 2. RESET E ESTILOS GLOBAIS                                                 */
 /* -------------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: var(--font-size-base); scroll-behavior: smooth; }
@@ -86,202 +64,151 @@ body {
   background-color: var(--color-background);
   color: var(--color-text-primary);
   font-family: var(--font-family-sans);
-  line-height: var(--line-height-base);
-  /* NOVIDADE v4.0: Transição suave para a troca de tema */
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background-color var(--transition-medium), color var(--transition-medium);
 }
 
-/* ... (demais estilos globais inalterados) ... */
-a { color: var(--color-primary); text-decoration: none; transition: color 0.2s ease; }
-a:hover { color: var(--color-primary-hover); text-decoration: underline; }
-:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
-.skip-link { position: absolute; top: -100px; left: var(--space-m); background-color: var(--color-highlight); color: white; padding: var(--space-s) var(--space-m); z-index: 1000; transition: top 0.3s ease; }
-.skip-link:focus { top: var(--space-m); }
-
 /* -------------------------------------------------------------------------- */
-/* 3. LAYOUT PRINCIPAL (Inalterado)                                           */
+/* 3. MOTOR DE ANIMAÇÃO DE FUNDO (AURORA)                                     */
 /* -------------------------------------------------------------------------- */
-.main-container { display: grid; grid-template-columns: 1fr; padding-top: var(--header-height); }
-@media (min-width: 768px) { .main-container { grid-template-columns: var(--sidebar-width) 1fr; } }
-@media (min-width: 1024px) { .main-container { grid-template-columns: var(--sidebar-width) 1fr var(--toc-width); } }
+.aurora-background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
 
-/* -------------------------------------------------------------------------- */
-/* 4. COMPONENTES                                                             */
-/* -------------------------------------------------------------------------- */
-
-/* ----- Cabeçalho (site-header) (Pequenos ajustes) ----- */
-.site-header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height); background-color: var(--color-surface); border-bottom: 1px solid var(--color-border); z-index: 100; }
-.header-container { display: flex; align-items: center; justify-content: space-between; gap: var(--space-m); padding: 0 var(--space-m); height: 100%; max-width: 1440px; margin: 0 auto; }
-.logo { display: flex; align-items: center; gap: var(--space-s); color: var(--color-text-primary); font-weight: 600; flex-shrink: 0; }
-.logo svg { color: var(--color-primary); }
-.header-actions { display: flex; align-items: center; gap: var(--space-s); flex-grow: 1; justify-content: flex-end; }
-.search-bar { width: 100%; max-width: 300px; }
-.search-bar input { background-color: var(--color-background); border: 1px solid var(--color-border); border-radius: var(--border-radius); color: var(--color-text-primary); padding: var(--space-s); width: 100%; }
-.theme-toggle { /* ... (estilos inalterados) ... */ }
-.mobile-nav-toggle { background: none; border: none; color: var(--color-text-primary); cursor: pointer; padding: var(--space-s); }
-.mobile-nav-toggle svg, .theme-toggle svg { width: 16px; height: 16px; }
-
-/* ----- Navegação Principal (site-nav) ----- */
-/* NOVIDADE v4.0: Estilos para <details> e <summary> */
-.site-nav { /* ... (estilos de posicionamento inalterados) ... */ }
-.nav-list { list-style: none; }
-.nav-category:not(:first-child) { margin-top: var(--space-l); }
-.nav-category-title { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase; margin-bottom: var(--space-m); }
-.nav-link { display: block; padding: var(--space-s) 0; color: var(--color-text-secondary); }
-.nav-link.active { color: var(--color-primary); font-weight: 600; }
-details { padding-left: var(--space-s); }
-details ul { padding-left: var(--space-m); }
-summary { cursor: pointer; position: relative; padding: var(--space-s) 0; color: var(--color-text-secondary); list-style: none; /* Remove marcador padrão */ }
-summary::before { /* Marcador customizado (chevron) */
-  content: '›';
+.aurora-background::before,
+.aurora-background::after {
+  content: '';
   position: absolute;
-  left: -12px;
-  font-size: 1.2em;
-  transition: transform 0.2s ease;
+  width: 80vmax; height: 80vmax;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  mix-blend-mode: screen;
 }
-details[open] > summary::before {
-  transform: rotate(90deg);
+.aurora-background::before {
+  background-color: var(--aurora-color-1);
+  top: -50%; left: -50%;
+  animation: aurora-move 25s infinite linear alternate;
+}
+.aurora-background::after {
+  background-color: var(--aurora-color-3);
+  bottom: -50%; right: -50%;
+  animation: aurora-move 30s infinite linear alternate-reverse;
+}
+@keyframes aurora-move {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to { transform: translate(20vw, 20vh) rotate(360deg); }
 }
 
-/* ----- Conteúdo Principal (main-content) ----- */
-.main-content { padding: var(--space-xl); }
-.main-content article { max-width: 800px; margin: 0 auto; }
-.page-header .breadcrumb { font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-s); }
-.main-content h1, .main-content h2, .main-content h4 { line-height: var(--line-height-heading); }
-.main-content h4 { font-size: 1.1em; margin-top: var(--space-l); margin-bottom: var(--space-s); }
+/* -------------------------------------------------------------------------- */
+/* 4. LOADER INICIAL E APP SHELL                                              */
+/* -------------------------------------------------------------------------- */
+#app-root { min-height: 100vh; }
+.initial-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-size: 1.2rem; color: var(--color-text-secondary); }
+.loader-spinner { width: 48px; height: 48px; border: 3px solid var(--glass-border); border-bottom-color: var(--color-accent); border-radius: 50%; display: inline-block; animation: rotation 1s linear infinite; }
+@keyframes rotation { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* NOVIDADE v4.0: Componente Callout */
+/* ESTRUTURA PRINCIPAL DO APP SHELL */
+.site-header, .site-nav, .site-footer {
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+.site-header { position: fixed; width: 100%; height: 70px; z-index: 100; /* ... */ }
+.main-container { display: grid; /* ... */ }
+.main-content { padding-top: 100px; padding-bottom: 50px; }
+
+/* -------------------------------------------------------------------------- */
+/* 5. ESTILOS DOS COMPONENTES (BASEADO NOS TEMPLATES)                         */
+/* -------------------------------------------------------------------------- */
+
+/* ----- Componente: Hero ----- */
+.hero { text-align: center; padding: 8rem 2rem; }
+.hero h1 { font-size: var(--font-size-fluid-h1); font-weight: 800; line-height: 1.1; color: var(--color-text-primary); }
+.hero p { font-size: 1.25rem; color: var(--color-text-secondary); max-width: 700px; margin: 1.5rem auto 0; }
+.hero h1::after { content: '.'; color: var(--color-accent); }
+
+/* ----- Componente: CardGrid e Card ----- */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 2rem; max-width: 1200px; margin: 0 auto; }
+.card {
+  display: block;
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  text-decoration: none;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 0 20px var(--color-accent-glow);
+  border-color: var(--color-accent);
+}
+.card h3 { color: var(--color-text-primary); font-size: 1.5rem; margin-bottom: 0.5rem; }
+.card p { color: var(--color-text-secondary); line-height: 1.6; }
+
+/* ----- Componentes de Artigo ----- */
+.page-header { max-width: 800px; margin: 0 auto 4rem; }
+.breadcrumb { color: var(--color-text-secondary); margin-bottom: 1rem; }
+.page-header h1 { font-size: var(--font-size-fluid-h2); line-height: 1.2; margin-bottom: 1rem; }
+.page-header .subtitle { font-size: 1.2rem; color: var(--color-text-secondary); }
+.main-content section { max-width: 800px; margin: 0 auto 3rem; }
+.main-content section h2 { margin-bottom: 1rem; font-size: 1.8rem; }
+
+/* ----- Componente: Callout ----- */
 .callout {
-  margin: var(--space-xl) 0;
-  padding: var(--space-m) var(--space-l);
-  border-left: 4px solid;
-  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  border-left: 3px solid;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  background-color: var(--glass-bg);
 }
-.callout p:last-child { margin-bottom: 0; }
-.callout.note {
-  background-color: var(--color-note-bg);
-  border-color: var(--color-note-border);
-}
-.callout.warning {
-  background-color: var(--color-warning-bg);
-  border-color: var(--color-warning-border);
-}
+.callout[data-variant="note"] { border-color: var(--color-accent); }
+.callout[data-variant="warning"] { border-color: #f15bb5; }
 
-/* NOVIDADE v4.0: Componente Bloco de Código */
+/* ----- Componente: FormulaBlock ----- */
 pre {
-  background-color: var(--color-code-bg);
-  padding: var(--space-m);
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: var(--border-radius);
+  padding: 1.5rem;
   overflow-x: auto;
   font-family: var(--font-family-mono);
-  font-size: var(--font-size-sm);
-  margin: var(--space-l) 0;
-}
-code {
-  font-family: var(--font-family-mono);
-}
-p > code { /* Código inline */
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 1.1rem;
 }
 
-/* NOVIDADE v4.0: Componente Tabela */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: var(--space-xl) 0;
-  font-size: var(--font-size-sm);
-}
-th, td {
-  padding: var(--space-s) var(--space-m);
-  border: 1px solid var(--color-border);
-  text-align: left;
-}
-thead {
-  background-color: var(--color-surface);
-  font-weight: 600;
-}
-tbody tr:nth-child(odd) {
-  background-color: var(--color-surface);
-}
+/* ----- Componente: TableBlock ----- */
+.table-wrapper { overflow-x: auto; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; }
+th, td { padding: 1rem; border-bottom: 1px solid var(--glass-border); }
+thead th { text-align: left; color: var(--color-text-secondary); font-weight: 600; }
+tbody tr:hover { background-color: var(--glass-bg); }
 
-
-/* ----- Busca e Destaque ----- */
-mark { background-color: var(--color-primary); color: var(--color-background); padding: 2px 4px; border-radius: var(--border-radius); }
-.no-results-message { text-align: center; padding: var(--space-xxl); font-size: var(--font-size-lg); color: var(--color-text-secondary); }
-.section-hidden { display: none; }
-
-/* ... (demais estilos para .page-toc, .site-footer, etc. permanecem os mesmos) ... */
-.page-toc { display: none; }
-@media (min-width: 1024px) { .page-toc { display: block; position: sticky; top: var(--header-height); height: calc(100vh - var(--header-height)); overflow-y: auto; padding: var(--space-l); font-size: var(--font-size-sm); } }
-.page-toc h3 { font-weight: 600; color: var(--color-text-secondary); margin-bottom: var(--space-m); }
-.page-toc ul { list-style: none; }
-.page-toc li a { display: block; padding: var(--space-xs) 0; color: var(--color-text-secondary); border-left: 2px solid transparent; padding-left: var(--space-m); }
-.page-toc li a:hover { color: var(--color-text-primary); text-decoration: none; }
-.page-toc li a.active { color: var(--color-primary); border-left-color: var(--color-primary); font-weight: 600; }
-.site-footer { text-align: center; padding: var(--space-xl); margin-top: var(--space-xxl); border-top: 1px solid var(--color-border); font-size: var(--font-size-sm); color: var(--color-text-secondary); }
-
-/* Em styles.css */
-.main-content article {
-  max-width: 800px;
-  margin: 0 auto;
-  /* NOVO v4.0: Habilita o reordenamento por relevância da busca */
-  display: flex;
-  flex-direction: column;
+/* ----- Componente: Timeline ----- */
+.timeline { position: relative; padding: 2rem 0; }
+.timeline::before { /* A linha vertical */
+  content: '';
+  position: absolute;
+  top: 0; left: 2rem;
+  height: 100%;
+  width: 2px;
+  background-color: var(--glass-border);
 }
-
-/* Em styles.css */
-/* -------------------------------------------------------------------------- */
-/* 6. ESTILOS DO DIAGRAMA SVG DINÂMICO (v4.0 - Nébula)                        */
-/* -------------------------------------------------------------------------- */
-.scientific-diagram {
-  color: var(--color-text-secondary);
-  overflow: visible;
-  max-width: 400px;
-  margin: 0 auto;
-  aspect-ratio: 1 / 1;
+.timeline-event { position: relative; padding-left: 4rem; margin-bottom: 2rem; }
+.timeline-event::before { /* O ponto na linha */
+  content: '';
+  position: absolute;
+  left: calc(2rem - 6px);
+  top: 5px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-background);
 }
-
-.spacetime-grid-line {
-  stroke: var(--color-border);
-  stroke-width: 1px;
-  transition: d 0.8s cubic-bezier(0.65, 0, 0.35, 1); /* Anima a forma do caminho */
-}
-
-.central-mass {
-  fill: var(--color-primary);
-  filter: drop-shadow(0 0 10px var(--color-primary));
-  transform-origin: center;
-  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s ease;
-  transform: scale(0);
-  opacity: 0;
-}
-
-.orbital-path {
-  fill: none;
-  stroke: var(--color-text-secondary);
-  stroke-width: 1px;
-  stroke-dasharray: 4, 4;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.orbiting-body {
-  fill: var(--color-text-primary);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-/* Estados de animação */
-.diagram-animated .central-mass {
-  transform: scale(1);
-  opacity: 1;
-}
-.diagram-animated .orbital-path,
-.diagram-animated .orbiting-body {
-  opacity: 1;
-}
+.timeline-year { font-weight: 700; color: var(--color-accent); font-size: 1.2rem; }
+.timeline-content h4 { color: var(--color-text-primary); font-size: 1.2rem; }
+.timeline-content p { color: var(--color-text-secondary); }
