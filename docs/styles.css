@@ -1,0 +1,398 @@
+/* ARQUIVO 2 de 7: styles.css */
+/* Responsável por toda a apresentação visual, theming e responsividade. */
+
+/* -------------------------------------------------------------------------- */
+/* 1. ARQUITETURA DE VARIÁVEIS (A Base Matemática e Temática)                 */
+/* -------------------------------------------------------------------------- */
+:root {
+  /* Paleta de Cores (Tema Escuro por Padrão) */
+  --color-background: #0d1117;
+  --color-surface: #161b22;
+  --color-border: #30363d;
+  --color-text-primary: #c9d1d9;
+  --color-text-secondary: #8b949e;
+  --color-primary: #58a6ff;
+  --color-primary-hover: #79c0ff;
+  --color-highlight: #1f6feb;
+
+  /* Tipografia (Escala Modular) */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-family-mono: "SF Mono", "Consolas", "Liberation Mono", Menlo, monospace;
+  
+  --font-size-base: 16px;
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-md: 1rem;       /* 16px */
+  --font-size-lg: 1.25rem;    /* 20px */
+  --font-size-xl: 1.5rem;     /* 24px */
+  --font-size-xxl: 2rem;      /* 32px */
+  
+  --line-height-base: 1.6;
+  --line-height-heading: 1.2;
+
+  /* Geometria e Espaçamento (Proporcional) */
+  --space-unit: 1rem;
+  --space-xs: calc(var(--space-unit) * 0.25);  /* 4px */
+  --space-s: calc(var(--space-unit) * 0.5);   /* 8px */
+  --space-m: var(--space-unit);             /* 16px */
+  --space-l: calc(var(--space-unit) * 1.5);   /* 24px */
+  --space-xl: calc(var(--space-unit) * 2);    /* 32px */
+  --space-xxl: calc(var(--space-unit) * 3);   /* 48px */
+
+  /* Layout */
+  --header-height: 60px;
+  --sidebar-width: 260px;
+  --toc-width: 240px;
+  --border-radius: 6px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. RESET BÁSICO E ESTILOS GLOBAIS                                          */
+/* -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  line-height: var(--line-height-base);
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+/* Melhora a acessibilidade para navegação por teclado */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Classes utilitárias para acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-m);
+  background-color: var(--color-highlight);
+  color: white;
+  padding: var(--space-s) var(--space-m);
+  z-index: 1000;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: var(--space-m);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. LAYOUT PRINCIPAL (Mobile-First com CSS Grid)                            */
+/* -------------------------------------------------------------------------- */
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding-top: var(--header-height);
+}
+
+/* Layout para telas médias (Tablet) */
+@media (min-width: 768px) {
+  .main-container {
+    grid-template-columns: var(--sidebar-width) 1fr;
+  }
+}
+
+/* Layout para telas grandes (Desktop) */
+@media (min-width: 1024px) {
+  .main-container {
+    grid-template-columns: var(--sidebar-width) 1fr var(--toc-width);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. COMPONENTES (Metodologia BEM)                                           */
+/* -------------------------------------------------------------------------- */
+
+/* ----- Cabeçalho (site-header) ----- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-m);
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.logo-svg { color: var(--color-primary); }
+.logo-text { display: none; } /* Oculto em telas pequenas */
+@media (min-width: 768px) {
+  .logo-text { display: block; }
+}
+
+.search-bar input {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  color: var(--color-text-primary);
+  padding: var(--space-s);
+  width: 250px; /* Será ajustado conforme necessário */
+}
+
+.mobile-nav-toggle {
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.icon-menu {
+    fill: currentColor;
+}
+
+@media (min-width: 768px) {
+  .mobile-nav-toggle {
+    display: none;
+  }
+}
+
+/* ----- Navegação Principal (site-nav) ----- */
+.site-nav {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--header-height));
+  background-color: var(--color-background);
+  border-right: 1px solid var(--color-border);
+  padding: var(--space-l);
+  overflow-y: auto;
+  transform: translateX(-100%); /* Escondido por padrão no mobile */
+  transition: transform 0.3s ease;
+}
+
+.site-nav.is-open {
+  transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+  .site-nav {
+    position: sticky;
+    transform: translateX(0);
+  }
+}
+
+.nav-list, .nav-list ul {
+  list-style: none;
+}
+
+.nav-category:not(:first-child) {
+  margin-top: var(--space-xl);
+}
+
+.nav-category-title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  margin-bottom: var(--space-m);
+}
+
+.nav-link {
+  display: block;
+  padding: var(--space-s) 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-md);
+}
+
+.nav-link:hover {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.nav-link.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ----- Conteúdo Principal (main-content) ----- */
+.main-content {
+  padding: var(--space-xl);
+}
+
+.main-content article {
+  max-width: 800px; /* Largura ideal para leitura */
+  margin: 0 auto;
+}
+
+.page-header h1 {
+  font-size: var(--font-size-xxl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-s);
+  line-height: var(--line-height-heading);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-m);
+}
+
+.page-header .subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-m);
+}
+
+.main-content h2 {
+  font-size: var(--font-size-xl);
+  margin-top: var(--space-xxl);
+  margin-bottom: var(--space-l);
+  padding-bottom: var(--space-s);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.main-content p, .main-content ol, .main-content blockquote {
+  margin-bottom: var(--space-m);
+}
+
+.main-content ol {
+  padding-left: var(--space-l);
+}
+
+.main-content blockquote {
+  border-left: 4px solid var(--color-border);
+  padding-left: var(--space-m);
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.main-content blockquote footer {
+  margin-top: var(--space-s);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ----- Diagramas e Figuras ----- */
+.diagram-container {
+  margin: var(--space-xl) 0;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--space-l);
+  text-align: center;
+}
+
+.scientific-diagram {
+    color: var(--color-text-secondary);
+}
+
+.diagram-container figcaption {
+  margin-top: var(--space-m);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* ----- Sumário da Página (page-toc) ----- */
+.page-toc {
+  display: none; /* Oculto em telas pequenas e médias */
+}
+
+@media (min-width: 1024px) {
+  .page-toc {
+    display: block;
+    position: sticky;
+    top: var(--header-height);
+    height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+    padding: var(--space-l);
+    font-size: var(--font-size-sm);
+  }
+}
+
+.page-toc h3 {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-m);
+}
+
+.page-toc ul {
+  list-style: none;
+}
+
+.page-toc li a {
+  display: block;
+  padding: var(--space-xs) 0;
+  color: var(--color-text-secondary);
+  border-left: 2px solid transparent;
+  padding-left: var(--space-m);
+}
+
+.page-toc li a:hover {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.page-toc li a.active { /* Esta classe será adicionada via JS (scroll spy) */
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ----- Rodapé (site-footer) ----- */
+.site-footer {
+  text-align: center;
+  padding: var(--space-xl);
+  margin-top: var(--space-xxl);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
