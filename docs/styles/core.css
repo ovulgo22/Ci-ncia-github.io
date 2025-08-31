@@ -1,58 +1,177 @@
-/* ARQUIVO 3 de 8: styles/core.css (Versão 6.1 - Symbiont Finalizado) */
+/* ARQUIVO 3 de 8: styles/core.css (Versão 6.0 - Symbiont) */
+/* Estilos essenciais para o App Shell, loader e a estética "Bio-luminescência". */
+/* Este arquivo é otimizado para ser o menor e mais rápido possível. */
 
-/* ... (todo o conteúdo anterior do styles/core.css permanece o mesmo) ... */
+/* -------------------------------------------------------------------------- */
+/* 1. VARIÁVEIS GLOBAIS (DNA VISUAL)                                          */
+/* -------------------------------------------------------------------------- */
+:root {
+  /* Paleta de Cores (Tema Escuro "Bio-luminescência") */
+  --color-background: #02040a;
+  --color-surface: rgba(10, 13, 26, 0.6); /* Fundo semi-transparente para o efeito */
+  --color-text-primary: #e6e0ff;
+  --color-text-secondary: #7b88a1;
+  --color-accent: #16b58f; /* Um verde-água vibrante */
+  --color-glow: rgba(22, 181, 143, 0.15);
+  --color-border: rgba(123, 136, 161, 0.2);
+  
+  /* Cores do Fundo Aurora (versão orgânica) */
+  --aurora-color-1: #16b58f;
+  --aurora-color-2: #3a5aff;
+
+  /* Variáveis do Tema Claro */
+  --light-background: #ffffff;
+  --light-surface: rgba(244, 246, 249, 0.7);
+  --light-text-primary: #1d2129;
+  --light-text-secondary: #5f6773;
+  --light-accent: #006ee5;
+  --light-glow: rgba(0, 110, 229, 0.1);
+  --light-border: rgba(29, 33, 41, 0.1);
+
+  /* Tipografia Fluida e Moderna */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-family-mono: 'Fira Code', 'JetBrains Mono', monospace;
+  --font-size-base: 16px;
+  --font-size-fluid-h1: clamp(2.5rem, 6vw, 4.5rem);
+  --font-size-fluid-h2: clamp(1.8rem, 4vw, 2.8rem);
+  
+  /* Geometria e Animações */
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-medium: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html.theme-light {
+  --color-background: var(--light-background);
+  --color-surface: var(--light-surface);
+  --color-text-primary: var(--light-text-primary);
+  --color-text-secondary: var(--light-text-secondary);
+  --color-accent: var(--light-accent);
+  --color-glow: var(--light-glow);
+  --color-border: var(--light-border);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. RESET, GLOBAIS E FUNDO ANIMADO                                          */
+/* -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: var(--font-size-base); scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  font-synthesis: none; /* Controle tipográfico aprimorado */
+  text-rendering: optimizeLegibility;
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background-color var(--transition-medium), color var(--transition-medium);
+}
+
+/* Fundo "Aurora" Orgânico */
+.aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+.aurora-background::before, .aurora-background::after {
+  content: '';
+  position: absolute;
+  width: 60vmax; height: 60vmax;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  mix-blend-mode: hard-light; /* Efeito de mistura de cor mais interessante */
+}
+.aurora-background::before { background-color: var(--aurora-color-1); top: -20%; right: -20%; animation: aurora-float 20s infinite linear alternate; }
+.aurora-background::after { background-color: var(--aurora-color-2); bottom: -20%; left: -20%; animation: aurora-float 25s infinite linear alternate-reverse; }
+@keyframes aurora-float { from { transform: translate(0, 0) rotate(0deg); } to { transform: translate(10vw, -10vh) rotate(180deg); } }
+
+/* -------------------------------------------------------------------------- */
+/* 3. LOADER INICIAL E APP SHELL                                              */
+/* -------------------------------------------------------------------------- */
+.initial-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; gap: 1rem; color: var(--color-text-secondary); transition: opacity 0.5s ease; }
+.loader-pulse {
+  width: 50px; height: 50px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 20px var(--color-accent), 0 0 40px var(--color-glow);
+  animation: pulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(0.8); opacity: 0.7; }
+  50% { transform: scale(1); opacity: 1; }
+}
+
+/* ESTRUTURA PRINCIPAL DO APP SHELL (RENDERIZADO VIA JS) */
+.site-header {
+  position: fixed;
+  top: 1rem;
+  left: 1rem; right: 1rem;
+  height: 60px;
+  z-index: 100;
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(0,0,0,0.2);
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color var(--transition-medium), border-color var(--transition-medium);
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 80px 1rem 1rem 1rem; /* Espaço para o header flutuante e respiros */
+}
+@media(min-width: 1024px) {
+  .main-container {
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.site-nav {
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 96px); /* 80px do topo + 16px de margem inferior */
+  padding: 1.5rem;
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(10px);
+  transition: background-color var(--transition-medium), border-color var(--transition-medium);
+}
+
+.main-content {
+  padding: 1rem;
+  min-width: 0; /* Correção para Grid/Flexbox */
+}
+
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
 
 /* -------------------------------------------------------------------------- */
 /* 4. CLASSES UTILITÁRIAS ESSENCIAIS                                          */
 /* -------------------------------------------------------------------------- */
-
-/* ... (regras .sr-only, .skip-link, :focus-visible permanecem as mesmas) ... */
-
-/* -------------------------------------------------------------------------- */
-/* 5. ESTILOS DO APP SHELL RESPONSIVO (ATUALIZADO)                            */
-/* -------------------------------------------------------------------------- */
-.mobile-nav-toggle {
-  background: none;
-  border: none;
-  color: var(--color-text-primary);
-  cursor: pointer;
-  padding: 0.5rem;
-  display: flex; /* Para centralizar o SVG */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  padding: 0.5rem 1.5rem;
+  border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+  z-index: 1000;
+  transition: top 0.3s ease;
+  font-weight: 600;
+  text-decoration: none;
 }
-@media (min-width: 1024px) {
-  .mobile-nav-toggle {
-    display: none;
-  }
-}
-
-@media (max-width: 1023px) {
-  .site-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 300px;
-    height: 100%;
-    z-index: 200;
-    transform: translateX(-100%);
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 10px 0 50px rgba(0,0,0,0.2);
-  }
-  .site-nav.is-open {
-    transform: translateX(0);
-  }
-  .nav-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(2, 4, 10, 0.7);
-    backdrop-filter: blur(5px);
-    z-index: 199;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-  }
-  .nav-overlay.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
+.skip-link:focus { top: 0; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 4px; }
